@@ -1,8 +1,26 @@
+using DevOS.Application.Projects;
+using DevOS.Application.Projects.CreateProject;
+using DevOS.Application.Projects.GetProjects;
+using DevOS.Infrastructure.Persistence;
+using DevOS.Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// Register DbContext with PostgreSQL
+builder.Services.AddDbContext<DevOsDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DevOS")));
+
+// Register repository
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+
+// Register handlers
+builder.Services.AddScoped<CreateProjectHandler>();
+builder.Services.AddScoped<GetProjectsHandler>();
 
 var app = builder.Build();
 
@@ -14,28 +32,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapPost("/api/projects", async (CreateProjectCommand command, CreateProjectHandler handler, CancellationToken cancellationToken) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var response = await handler.HandleAsync(command, cancellationToken);
+    return Results.Created($"/api/projects/{response.Id}", response);
+});
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/api/projects", async (GetProjectsHandler handler, CancellationToken cancellationToken) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    var query = new GetProjectsQuery();
+    var response = await handler.HandleAsync(query, cancellationToken);
+    return Results.Ok(response);
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
