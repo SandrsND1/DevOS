@@ -1,33 +1,36 @@
 using DevOS.Application.Projects;
 
-namespace DevOS.Application.Projects.GetProjects
+namespace DevOS.Application.Projects.GetProject
 {
-    public class GetProjectsHandler
+    public class GetProjectHandler
     {
         private readonly IProjectRepository _projectRepository;
 
-        public GetProjectsHandler(IProjectRepository projectRepository)
+        public GetProjectHandler(IProjectRepository projectRepository)
         {
             _projectRepository = projectRepository;
         }
 
-        public async Task<List<GetProjectsResponse>> HandleAsync(
-            GetProjectsQuery query,
+        public async Task<GetProjectResponse?> HandleAsync(
+            GetProjectQuery query,
             CancellationToken cancellationToken = default)
         {
-            var projects = await _projectRepository.GetAllAsync(cancellationToken);
+            var project = await _projectRepository.GetByIdAsync(query.Id, cancellationToken);
 
-            return projects.Select(p => new GetProjectsResponse
+            if (project is null)
+                return null;
+
+            return new GetProjectResponse
             {
-                Id = p.Id,
-                Name = p.Name,
-                Description = p.Description,
-                Status = p.Status,
-                Priority = p.Priority,
-                Deadline = p.Deadline,
-                CreatedAt = p.CreatedAt,
-                UpdatedAt = p.UpdatedAt
-            }).ToList();
+                Id = project.Id,
+                Name = project.Name,
+                Description = project.Description,
+                Status = project.Status,
+                Priority = project.Priority,
+                Deadline = project.Deadline,
+                CreatedAt = project.CreatedAt,
+                UpdatedAt = project.UpdatedAt
+            };
         }
     }
 }

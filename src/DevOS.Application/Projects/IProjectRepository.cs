@@ -6,5 +6,6 @@ namespace DevOS.Application.Projects
     {
         Task AddAsync(Project project, CancellationToken cancellationToken = default);
         Task<List<Project>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<Project?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     }
 }

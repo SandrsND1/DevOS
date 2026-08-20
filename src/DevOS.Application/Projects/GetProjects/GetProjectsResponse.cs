@@ -1,8 +1,8 @@
 using DevOS.Domain.Entities;
 
-namespace DevOS.Application.Projects.GetProjects
+namespace DevOS.Application.Projects.GetProject
 {
-    public class GetProjectsResponse
+    public class GetProjectResponse
     {
         public Guid Id { get; init; }
         public string Name { get; init; } = string.Empty;
@@ -13,4 +13,4 @@ namespace DevOS.Application.Projects.GetProjects
         public DateTime CreatedAt { get; init; }
         public DateTime UpdatedAt { get; init; }
     }
-}   
+}

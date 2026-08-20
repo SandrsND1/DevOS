@@ -1,6 +1,7 @@
-namespace DevOS.Application.Projects.GetProjects
+namespace DevOS.Application.Projects.GetProject
 {
-    public class GetProjectsQuery
+    public class GetProjectQuery
     {
+        public Guid Id { get; init; }
     }
 }

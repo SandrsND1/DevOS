@@ -26,5 +26,12 @@ namespace DevOS.Infrastructure.Persistence.Repositories
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
+
+        public async Task<Project?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.Projects
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using DevOS.Application.Projects;
 using DevOS.Application.Projects.CreateProject;
+using DevOS.Application.Projects.GetProject;
 using DevOS.Application.Projects.GetProjects;
 using DevOS.Infrastructure.Persistence;
 using DevOS.Infrastructure.Persistence.Repositories;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 // Register handlers
 builder.Services.AddScoped<CreateProjectHandler>();
 builder.Services.AddScoped<GetProjectsHandler>();
+builder.Services.AddScoped<GetProjectHandler>();
 
 var app = builder.Build();
 
@@ -43,6 +45,16 @@ app.MapGet("/api/projects", async (GetProjectsHandler handler, CancellationToken
     var query = new GetProjectsQuery();
     var response = await handler.HandleAsync(query, cancellationToken);
     return Results.Ok(response);
+});
+
+app.MapGet("/api/projects/{id:guid}", async (Guid id, GetProjectHandler handler, CancellationToken cancellationToken) =>
+{
+    var query = new GetProjectQuery { Id = id };
+    var response = await handler.HandleAsync(query, cancellationToken);
+    
+    return response is null 
+        ? Results.NotFound() 
+        : Results.Ok(response);
 });
 
 app.Run();
