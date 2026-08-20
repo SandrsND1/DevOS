@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/DevOS.Api/DevOS.Api.csproj" />
+    <Project Path="src/DevOS.Domain/DevOS.Domain.csproj" />
   </Folder>
 </Solution>
