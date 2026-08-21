@@ -1,0 +1,1067 @@
+Структура папок тома System
+Серийный номер тома: 00000006 C80E:BCFE
+C:.
+|   .gitignore
+|   devos-about.txt
+|   devos-dependencies.txt
+|   devos-full-context.txt
+|   devos-tree.txt
+|   DevOS.slnx
+|   README.md
+|   
++---.vscode
+|       settings.json
+|       
++---src
+|   +---DevOS.Api
+|   |   |   appsettings.Development.json
+|   |   |   appsettings.json
+|   |   |   DevOS.Api.csproj
+|   |   |   DevOS.Api.http
+|   |   |   Program.cs
+|   |   |   
+|   |   +---bin
+|   |   |   \---Debug
+|   |   |       \---net10.0
+|   |   |           |   appsettings.Development.json
+|   |   |           |   appsettings.json
+|   |   |           |   DevOS.Api.deps.json
+|   |   |           |   DevOS.Api.dll
+|   |   |           |   DevOS.Api.exe
+|   |   |           |   DevOS.Api.pdb
+|   |   |           |   DevOS.Api.runtimeconfig.json
+|   |   |           |   DevOS.Api.staticwebassets.endpoints.json
+|   |   |           |   DevOS.Application.dll
+|   |   |           |   DevOS.Application.pdb
+|   |   |           |   DevOS.Domain.dll
+|   |   |           |   DevOS.Domain.pdb
+|   |   |           |   DevOS.Infrastructure.dll
+|   |   |           |   DevOS.Infrastructure.pdb
+|   |   |           |   Humanizer.dll
+|   |   |           |   Microsoft.AspNetCore.OpenApi.dll
+|   |   |           |   Microsoft.Build.Framework.dll
+|   |   |           |   Microsoft.CodeAnalysis.CSharp.dll
+|   |   |           |   Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+|   |   |           |   Microsoft.CodeAnalysis.dll
+|   |   |           |   Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
+|   |   |           |   Microsoft.CodeAnalysis.Workspaces.dll
+|   |   |           |   Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+|   |   |           |   Microsoft.EntityFrameworkCore.Abstractions.dll
+|   |   |           |   Microsoft.EntityFrameworkCore.Design.dll
+|   |   |           |   Microsoft.EntityFrameworkCore.dll
+|   |   |           |   Microsoft.EntityFrameworkCore.Relational.dll
+|   |   |           |   Microsoft.Extensions.DependencyModel.dll
+|   |   |           |   Microsoft.OpenApi.dll
+|   |   |           |   Microsoft.VisualStudio.SolutionPersistence.dll
+|   |   |           |   Mono.TextTemplating.dll
+|   |   |           |   Newtonsoft.Json.dll
+|   |   |           |   Npgsql.dll
+|   |   |           |   Npgsql.EntityFrameworkCore.PostgreSQL.dll
+|   |   |           |   System.CodeDom.dll
+|   |   |           |   System.Composition.AttributedModel.dll
+|   |   |           |   System.Composition.Convention.dll
+|   |   |           |   System.Composition.Hosting.dll
+|   |   |           |   System.Composition.Runtime.dll
+|   |   |           |   System.Composition.TypedParts.dll
+|   |   |           |   
+|   |   |           +---BuildHost-net472
+|   |   |           |   |   Microsoft.Build.Locator.dll
+|   |   |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe
+|   |   |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe.config
+|   |   |           |   |   Microsoft.IO.Redist.dll
+|   |   |           |   |   Newtonsoft.Json.dll
+|   |   |           |   |   System.Buffers.dll
+|   |   |           |   |   System.Collections.Immutable.dll
+|   |   |           |   |   System.CommandLine.dll
+|   |   |           |   |   System.Memory.dll
+|   |   |           |   |   System.Numerics.Vectors.dll
+|   |   |           |   |   System.Runtime.CompilerServices.Unsafe.dll
+|   |   |           |   |   System.Threading.Tasks.Extensions.dll
+|   |   |           |   |   
+|   |   |           |   +---cs
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---de
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---es
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---fr
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---it
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---ja
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---ko
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---pl
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---pt-BR
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---ru
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---tr
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---zh-Hans
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   \---zh-Hant
+|   |   |           |           System.CommandLine.resources.dll
+|   |   |           |           
+|   |   |           +---BuildHost-netcore
+|   |   |           |   |   Microsoft.Build.Locator.dll
+|   |   |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.deps.json
+|   |   |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+|   |   |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.runtimeconfig.json
+|   |   |           |   |   Newtonsoft.Json.dll
+|   |   |           |   |   System.Collections.Immutable.dll
+|   |   |           |   |   System.CommandLine.dll
+|   |   |           |   |   
+|   |   |           |   +---cs
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---de
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---es
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---fr
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---it
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---ja
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---ko
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---pl
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---pt-BR
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---ru
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---tr
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   +---zh-Hans
+|   |   |           |   |       System.CommandLine.resources.dll
+|   |   |           |   |       
+|   |   |           |   \---zh-Hant
+|   |   |           |           System.CommandLine.resources.dll
+|   |   |           |           
+|   |   |           +---cs
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---de
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---es
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---fr
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---it
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---ja
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---ko
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---pl
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---pt-BR
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---ru
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---tr
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           +---zh-Hans
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |           |       
+|   |   |           \---zh-Hant
+|   |   |                   Microsoft.CodeAnalysis.CSharp.resources.dll
+|   |   |                   Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|   |   |                   Microsoft.CodeAnalysis.resources.dll
+|   |   |                   Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+|   |   |                   Microsoft.CodeAnalysis.Workspaces.resources.dll
+|   |   |                   
+|   |   +---Controllers
+|   |   |       ProjectsController.cs
+|   |   |       TasksController.cs
+|   |   |       TimeEntriesController.cs
+|   |   |       
+|   |   +---Exceptions
+|   |   |       DependencyInjectionExtensions.cs
+|   |   |       GlobalExceptionHandler.cs
+|   |   |       
+|   |   +---obj
+|   |   |   |   DevOS.Api.csproj.nuget.dgspec.json
+|   |   |   |   DevOS.Api.csproj.nuget.g.props
+|   |   |   |   DevOS.Api.csproj.nuget.g.targets
+|   |   |   |   project.assets.json
+|   |   |   |   project.nuget.cache
+|   |   |   |   
+|   |   |   \---Debug
+|   |   |       \---net10.0
+|   |   |           |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|   |   |           |   apphost.exe
+|   |   |           |   DevOS.Api.AssemblyInfo.cs
+|   |   |           |   DevOS.Api.AssemblyInfoInputs.cache
+|   |   |           |   DevOS.Api.assets.cache
+|   |   |           |   DevOS.Api.csproj.AssemblyReference.cache
+|   |   |           |   DevOS.Api.csproj.CoreCompileInputs.cache
+|   |   |           |   DevOS.Api.csproj.FileListAbsolute.txt
+|   |   |           |   DevOS.Api.csproj.Up2Date
+|   |   |           |   DevOS.Api.dll
+|   |   |           |   DevOS.Api.GeneratedMSBuildEditorConfig.editorconfig
+|   |   |           |   DevOS.Api.genruntimeconfig.cache
+|   |   |           |   DevOS.Api.GlobalUsings.g.cs
+|   |   |           |   DevOS.Api.MvcApplicationPartsAssemblyInfo.cache
+|   |   |           |   DevOS.Api.MvcApplicationPartsAssemblyInfo.cs
+|   |   |           |   DevOS.Api.pdb
+|   |   |           |   rjsmcshtml.dswa.cache.json
+|   |   |           |   rjsmrazor.dswa.cache.json
+|   |   |           |   rpswa.dswa.cache.json
+|   |   |           |   staticwebassets.build.endpoints.json
+|   |   |           |   staticwebassets.build.json
+|   |   |           |   staticwebassets.build.json.cache
+|   |   |           |   swae.build.ex.cache
+|   |   |           |   
+|   |   |           +---ref
+|   |   |           |       DevOS.Api.dll
+|   |   |           |       
+|   |   |           +---refint
+|   |   |           |       DevOS.Api.dll
+|   |   |           |       
+|   |   |           \---staticwebassets
+|   |   \---Properties
+|   |           launchSettings.json
+|   |           
+|   +---DevOS.Application
+|   |   |   DevOS.Application.csproj
+|   |   |   
+|   |   +---Abstractions
+|   |   |   \---Repositories
+|   |   |           IProjectRepository.cs
+|   |   |           
+|   |   +---bin
+|   |   |   \---Debug
+|   |   |       \---net10.0
+|   |   |               DevOS.Application.deps.json
+|   |   |               DevOS.Application.dll
+|   |   |               DevOS.Application.pdb
+|   |   |               DevOS.Domain.dll
+|   |   |               DevOS.Domain.pdb
+|   |   |               
+|   |   +---Exceptions
+|   |   |       ProjectNotFoundException.cs
+|   |   |       TaskNotFoundException.cs
+|   |   |       TimeEntryNotFoundException.cs
+|   |   |       
+|   |   +---obj
+|   |   |   |   DevOS.Application.csproj.nuget.dgspec.json
+|   |   |   |   DevOS.Application.csproj.nuget.g.props
+|   |   |   |   DevOS.Application.csproj.nuget.g.targets
+|   |   |   |   project.assets.json
+|   |   |   |   project.nuget.cache
+|   |   |   |   
+|   |   |   \---Debug
+|   |   |       \---net10.0
+|   |   |           |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|   |   |           |   DevOS.Ap.475CC415.Up2Date
+|   |   |           |   DevOS.Application.AssemblyInfo.cs
+|   |   |           |   DevOS.Application.AssemblyInfoInputs.cache
+|   |   |           |   DevOS.Application.assets.cache
+|   |   |           |   DevOS.Application.csproj.AssemblyReference.cache
+|   |   |           |   DevOS.Application.csproj.CoreCompileInputs.cache
+|   |   |           |   DevOS.Application.csproj.FileListAbsolute.txt
+|   |   |           |   DevOS.Application.dll
+|   |   |           |   DevOS.Application.GeneratedMSBuildEditorConfig.editorconfig
+|   |   |           |   DevOS.Application.GlobalUsings.g.cs
+|   |   |           |   DevOS.Application.pdb
+|   |   |           |   
+|   |   |           +---ref
+|   |   |           |       DevOS.Application.dll
+|   |   |           |       
+|   |   |           \---refint
+|   |   |                   DevOS.Application.dll
+|   |   |                   
+|   |   +---Projects
+|   |   |   +---Commands
+|   |   |   |   +---ChangeProjectStatus
+|   |   |   |   |       ChangeProjectStatusCommand.cs
+|   |   |   |   |       ChangeProjectStatusHandler.cs
+|   |   |   |   |       
+|   |   |   |   +---CreateProject
+|   |   |   |   |       CreateProjectCommand.cs
+|   |   |   |   |       CreateProjectHandler.cs
+|   |   |   |   |       
+|   |   |   |   +---DeleteProject
+|   |   |   |   |       DeleteProjectCommand.cs
+|   |   |   |   |       DeleteProjectHandler.cs
+|   |   |   |   |       
+|   |   |   |   \---UpdateProject
+|   |   |   |           UpdateProjectCommand.cs
+|   |   |   |           UpdateProjectHandler.cs
+|   |   |   |           
+|   |   |   +---DTOs
+|   |   |   |       PagedResult.cs
+|   |   |   |       ProjectDto.cs
+|   |   |   |       ProjectListItemDto.cs
+|   |   |   |       
+|   |   |   \---Queries
+|   |   |       +---GetProjectById
+|   |   |       |       GetProjectByIdHandler.cs
+|   |   |       |       GetProjectByIdQuery.cs
+|   |   |       |       
+|   |   |       \---GetProjects
+|   |   |               GetProjectsHandler.cs
+|   |   |               GetProjectsQuery.cs
+|   |   |               
+|   |   +---Tasks
+|   |   |   |   ITaskRepository.cs
+|   |   |   |   
+|   |   |   +---CreateTask
+|   |   |   |       CreateTaskCommand.cs
+|   |   |   |       CreateTaskHandler.cs
+|   |   |   |       CreateTaskResponse.cs
+|   |   |   |       CreateTaskValidator.cs
+|   |   |   |       
+|   |   |   +---DeleteTask
+|   |   |   |       DeleteTaskCommand.cs
+|   |   |   |       DeleteTaskHandler.cs
+|   |   |   |       
+|   |   |   +---GetTask
+|   |   |   |       GetTaskHandler.cs
+|   |   |   |       GetTaskQuery.cs
+|   |   |   |       GetTaskResponse.cs
+|   |   |   |       
+|   |   |   +---GetTasks
+|   |   |   |       GetTasksHandler.cs
+|   |   |   |       GetTasksQuery.cs
+|   |   |   |       GetTasksResponse.cs
+|   |   |   |       GetTasksValidator.cs
+|   |   |   |       
+|   |   |   \---UpdateTask
+|   |   |           UpdateTaskCommand.cs
+|   |   |           UpdateTaskHandler.cs
+|   |   |           UpdateTaskResponse.cs
+|   |   |           UpdateTaskValidator.cs
+|   |   |           
+|   |   +---TimeEntries
+|   |   |   |   ITimeEntryRepository.cs
+|   |   |   |   
+|   |   |   +---Commands
+|   |   |   |   +---CreateTimeEntry
+|   |   |   |   |       CreateTimeEntryCommand.cs
+|   |   |   |   |       CreateTimeEntryHandler.cs
+|   |   |   |   |       CreateTimeEntryValidator.cs
+|   |   |   |   |       
+|   |   |   |   +---DeleteTimeEntry
+|   |   |   |   |       DeleteTimeEntryCommand.cs
+|   |   |   |   |       DeleteTimeEntryHandler.cs
+|   |   |   |   |       
+|   |   |   |   \---UpdateTimeEntry
+|   |   |   |           UpdateTimeEntryCommand.cs
+|   |   |   |           UpdateTimeEntryHandler.cs
+|   |   |   |           UpdateTimeEntryValidator.cs
+|   |   |   |           
+|   |   |   +---DTOs
+|   |   |   |       TimeEntryDto.cs
+|   |   |   |       
+|   |   |   \---Queries
+|   |   |       +---GetTimeEntries
+|   |   |       |       GetTimeEntriesHandler.cs
+|   |   |       |       GetTimeEntriesQuery.cs
+|   |   |       |       GetTimeEntriesValidator.cs
+|   |   |       |       
+|   |   |       \---GetTimeEntryById
+|   |   |               GetTimeEntryByIdHandler.cs
+|   |   |               GetTimeEntryByIdQuery.cs
+|   |   |               
+|   |   \---Validation
+|   |           ValidationException.cs
+|   |           
+|   +---DevOS.Domain
+|   |   |   DevOS.Domain.csproj
+|   |   |   
+|   |   +---bin
+|   |   |   \---Debug
+|   |   |       \---net10.0
+|   |   |               DevOS.Domain.deps.json
+|   |   |               DevOS.Domain.dll
+|   |   |               DevOS.Domain.pdb
+|   |   |               
+|   |   +---Entities
+|   |   |       DevTask.cs
+|   |   |       Project.cs
+|   |   |       TimeEntry.cs
+|   |   |       
+|   |   \---obj
+|   |       |   DevOS.Domain.csproj.nuget.dgspec.json
+|   |       |   DevOS.Domain.csproj.nuget.g.props
+|   |       |   DevOS.Domain.csproj.nuget.g.targets
+|   |       |   project.assets.json
+|   |       |   project.nuget.cache
+|   |       |   
+|   |       \---Debug
+|   |           \---net10.0
+|   |               |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|   |               |   DevOS.Domain.AssemblyInfo.cs
+|   |               |   DevOS.Domain.AssemblyInfoInputs.cache
+|   |               |   DevOS.Domain.assets.cache
+|   |               |   DevOS.Domain.csproj.CoreCompileInputs.cache
+|   |               |   DevOS.Domain.csproj.FileListAbsolute.txt
+|   |               |   DevOS.Domain.dll
+|   |               |   DevOS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+|   |               |   DevOS.Domain.GlobalUsings.g.cs
+|   |               |   DevOS.Domain.pdb
+|   |               |   
+|   |               +---ref
+|   |               |       DevOS.Domain.dll
+|   |               |       
+|   |               \---refint
+|   |                       DevOS.Domain.dll
+|   |                       
+|   \---DevOS.Infrastructure
+|       |   DevOS.Infrastructure.csproj
+|       |   
+|       +---bin
+|       |   \---Debug
+|       |       \---net10.0
+|       |           |   DevOS.Application.dll
+|       |           |   DevOS.Application.pdb
+|       |           |   DevOS.Domain.dll
+|       |           |   DevOS.Domain.pdb
+|       |           |   DevOS.Infrastructure.deps.json
+|       |           |   DevOS.Infrastructure.dll
+|       |           |   DevOS.Infrastructure.pdb
+|       |           |   DevOS.Infrastructure.runtimeconfig.json
+|       |           |   
+|       |           +---BuildHost-net472
+|       |           |   |   Microsoft.Build.Locator.dll
+|       |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe
+|       |           |   |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe.config
+|       |           |   |   Microsoft.IO.Redist.dll
+|       |           |   |   Newtonsoft.Json.dll
+|       |           |   |   System.Buffers.dll
+|       |           |   |   System.Collections.Immutable.dll
+|       |           |   |   System.CommandLine.dll
+|       |           |   |   System.Memory.dll
+|       |           |   |   System.Numerics.Vectors.dll
+|       |           |   |   System.Runtime.CompilerServices.Unsafe.dll
+|       |           |   |   System.Threading.Tasks.Extensions.dll
+|       |           |   |   
+|       |           |   +---cs
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---de
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---es
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---fr
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---it
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---ja
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---ko
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---pl
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---pt-BR
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---ru
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---tr
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   +---zh-Hans
+|       |           |   |       System.CommandLine.resources.dll
+|       |           |   |       
+|       |           |   \---zh-Hant
+|       |           |           System.CommandLine.resources.dll
+|       |           |           
+|       |           \---BuildHost-netcore
+|       |               |   Microsoft.Build.Locator.dll
+|       |               |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.deps.json
+|       |               |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+|       |               |   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.runtimeconfig.json
+|       |               |   Newtonsoft.Json.dll
+|       |               |   System.Collections.Immutable.dll
+|       |               |   System.CommandLine.dll
+|       |               |   
+|       |               +---cs
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---de
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---es
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---fr
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---it
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---ja
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---ko
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---pl
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---pt-BR
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---ru
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---tr
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               +---zh-Hans
+|       |               |       System.CommandLine.resources.dll
+|       |               |       
+|       |               \---zh-Hant
+|       |                       System.CommandLine.resources.dll
+|       |                       
+|       +---obj
+|       |   |   DevOS.Infrastructure.csproj.nuget.dgspec.json
+|       |   |   DevOS.Infrastructure.csproj.nuget.g.props
+|       |   |   DevOS.Infrastructure.csproj.nuget.g.targets
+|       |   |   project.assets.json
+|       |   |   project.nuget.cache
+|       |   |   
+|       |   \---Debug
+|       |       \---net10.0
+|       |           |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|       |           |   DevOS.In.4BABD952.Up2Date
+|       |           |   DevOS.Infrastructure.AssemblyInfo.cs
+|       |           |   DevOS.Infrastructure.AssemblyInfoInputs.cache
+|       |           |   DevOS.Infrastructure.assets.cache
+|       |           |   DevOS.Infrastructure.csproj.AssemblyReference.cache
+|       |           |   DevOS.Infrastructure.csproj.CoreCompileInputs.cache
+|       |           |   DevOS.Infrastructure.csproj.FileListAbsolute.txt
+|       |           |   DevOS.Infrastructure.dll
+|       |           |   DevOS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+|       |           |   DevOS.Infrastructure.genruntimeconfig.cache
+|       |           |   DevOS.Infrastructure.GlobalUsings.g.cs
+|       |           |   DevOS.Infrastructure.pdb
+|       |           |   
+|       |           +---ref
+|       |           |       DevOS.Infrastructure.dll
+|       |           |       
+|       |           \---refint
+|       |                   DevOS.Infrastructure.dll
+|       |                   
+|       \---Persistence
+|           |   DevOsDbContext.cs
+|           |   
+|           +---Configurations
+|           |       DevTaskConfiguration.cs
+|           |       ProjectConfiguration.cs
+|           |       TimeEntryConfiguration.cs
+|           |       
+|           +---Migrations
+|           |       20260820132801_InitialCreate.cs
+|           |       20260820132801_InitialCreate.Designer.cs
+|           |       20260821132838_AddTimeEntries.cs
+|           |       20260821132838_AddTimeEntries.Designer.cs
+|           |       DevOsDbContextModelSnapshot.cs
+|           |       
+|           \---Repositories
+|                   ProjectRepository.cs
+|                   TaskRepository.cs
+|                   TimeEntryRepository.cs
+|                   
+\---tests
+    +---DevOS.Application.Tests
+    |   |   DevOS.Application.Tests.csproj
+    |   |   
+    |   +---bin
+    |   |   \---Debug
+    |   |       \---net10.0
+    |   |           |   .msCoverageSourceRootsMapping_DevOS.Application.Tests
+    |   |           |   Castle.Core.dll
+    |   |           |   CoverletSourceRootsMapping_DevOS.Application.Tests
+    |   |           |   DevOS.Application.dll
+    |   |           |   DevOS.Application.pdb
+    |   |           |   DevOS.Application.Tests.deps.json
+    |   |           |   DevOS.Application.Tests.dll
+    |   |           |   DevOS.Application.Tests.pdb
+    |   |           |   DevOS.Application.Tests.runtimeconfig.json
+    |   |           |   DevOS.Domain.dll
+    |   |           |   DevOS.Domain.pdb
+    |   |           |   Microsoft.TestPlatform.CommunicationUtilities.dll
+    |   |           |   Microsoft.TestPlatform.CoreUtilities.dll
+    |   |           |   Microsoft.TestPlatform.CrossPlatEngine.dll
+    |   |           |   Microsoft.TestPlatform.PlatformAbstractions.dll
+    |   |           |   Microsoft.TestPlatform.Utilities.dll
+    |   |           |   Microsoft.VisualStudio.CodeCoverage.Shim.dll
+    |   |           |   Microsoft.VisualStudio.TestPlatform.Common.dll
+    |   |           |   Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+    |   |           |   Moq.dll
+    |   |           |   Newtonsoft.Json.dll
+    |   |           |   System.Diagnostics.EventLog.dll
+    |   |           |   testhost.dll
+    |   |           |   testhost.exe
+    |   |           |   xunit.abstractions.dll
+    |   |           |   xunit.assert.dll
+    |   |           |   xunit.core.dll
+    |   |           |   xunit.execution.dotnet.dll
+    |   |           |   xunit.runner.visualstudio.testadapter.dll
+    |   |           |   
+    |   |           +---cs
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---de
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---es
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---fr
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---it
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---ja
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---ko
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---pl
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---pt-BR
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---ru
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---runtimes
+    |   |           |   \---win
+    |   |           |       \---lib
+    |   |           |           \---net6.0
+    |   |           |                   System.Diagnostics.EventLog.dll
+    |   |           |                   System.Diagnostics.EventLog.Messages.dll
+    |   |           |                   
+    |   |           +---tr
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           +---zh-Hans
+    |   |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |           |       
+    |   |           \---zh-Hant
+    |   |                   Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+    |   |                   Microsoft.TestPlatform.CoreUtilities.resources.dll
+    |   |                   Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+    |   |                   Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+    |   |                   Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+    |   |                   
+    |   +---obj
+    |   |   |   DevOS.Application.Tests.csproj.nuget.dgspec.json
+    |   |   |   DevOS.Application.Tests.csproj.nuget.g.props
+    |   |   |   DevOS.Application.Tests.csproj.nuget.g.targets
+    |   |   |   project.assets.json
+    |   |   |   project.nuget.cache
+    |   |   |   
+    |   |   \---Debug
+    |   |       \---net10.0
+    |   |           |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+    |   |           |   DevOS.Ap.4CED1E0F.Up2Date
+    |   |           |   DevOS.Application.Tests.AssemblyInfo.cs
+    |   |           |   DevOS.Application.Tests.AssemblyInfoInputs.cache
+    |   |           |   DevOS.Application.Tests.assets.cache
+    |   |           |   DevOS.Application.Tests.csproj.AssemblyReference.cache
+    |   |           |   DevOS.Application.Tests.csproj.CoreCompileInputs.cache
+    |   |           |   DevOS.Application.Tests.csproj.FileListAbsolute.txt
+    |   |           |   DevOS.Application.Tests.dll
+    |   |           |   DevOS.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
+    |   |           |   DevOS.Application.Tests.genruntimeconfig.cache
+    |   |           |   DevOS.Application.Tests.GlobalUsings.g.cs
+    |   |           |   DevOS.Application.Tests.pdb
+    |   |           |   
+    |   |           +---ref
+    |   |           |       DevOS.Application.Tests.dll
+    |   |           |       
+    |   |           \---refint
+    |   |                   DevOS.Application.Tests.dll
+    |   |                   
+    |   +---Projects
+    |   |   +---ChangeProjectStatus
+    |   |   |       ChangeProjectStatusHandlerTests.cs
+    |   |   |       
+    |   |   +---CreateProject
+    |   |   |       CreateProjectHandlerTests.cs
+    |   |   |       
+    |   |   +---DeleteProject
+    |   |   |       DeleteProjectHandlerTests.cs
+    |   |   |       
+    |   |   +---GetProject
+    |   |   |       GetProjectHandlerTests.cs
+    |   |   |       
+    |   |   +---GetProjects
+    |   |   |       GetProjectsHandlerTests.cs
+    |   |   |       
+    |   |   \---UpdateProject
+    |   |           UpdateProjectHandlerTests.cs
+    |   |           
+    |   +---Tasks
+    |   |   +---CreateTask
+    |   |   |       CreateTaskHandlerTests.cs
+    |   |   |       
+    |   |   +---DeleteTask
+    |   |   |       DeleteTaskHandlerTests.cs
+    |   |   |       
+    |   |   +---GetTask
+    |   |   |       GetTaskHandlerTests.cs
+    |   |   |       
+    |   |   +---GetTasks
+    |   |   |       GetTasksHandlerTests.cs
+    |   |   |       
+    |   |   +---UpdateTask
+    |   |   |       UpdateTaskHandlerTests.cs
+    |   |   |       
+    |   |   \---Validation
+    |   |           TaskValidatorsTests.cs
+    |   |           
+    |   \---TimeEntries
+    |       +---CreateTimeEntry
+    |       |       CreateTimeEntryHandlerTests.cs
+    |       |       
+    |       +---DeleteTimeEntry
+    |       |       DeleteTimeEntryHandlerTests.cs
+    |       |       
+    |       +---GetTimeEntries
+    |       |       GetTimeEntriesHandlerTests.cs
+    |       |       
+    |       +---GetTimeEntryById
+    |       |       GetTimeEntryByIdHandlerTests.cs
+    |       |       
+    |       +---UpdateTimeEntry
+    |       |       UpdateTimeEntryHandlerTests.cs
+    |       |       
+    |       \---Validation
+    |               TimeEntryValidatorsTests.cs
+    |               
+    \---DevOS.Infrastructure.Tests
+        |   DevOS.Infrastructure.Tests.csproj
+        |   ProjectRepositoryTests.cs
+        |   TaskRepositoryTests.cs
+        |   TimeEntryRepositoryTests.cs
+        |   
+        +---bin
+        |   \---Debug
+        |       \---net10.0
+        |           |   .msCoverageSourceRootsMapping_DevOS.Infrastructure.Tests
+        |           |   BouncyCastle.Cryptography.dll
+        |           |   CoverletSourceRootsMapping_DevOS.Infrastructure.Tests
+        |           |   DevOS.Application.dll
+        |           |   DevOS.Application.pdb
+        |           |   DevOS.Domain.dll
+        |           |   DevOS.Domain.pdb
+        |           |   DevOS.Infrastructure.dll
+        |           |   DevOS.Infrastructure.pdb
+        |           |   DevOS.Infrastructure.Tests.deps.json
+        |           |   DevOS.Infrastructure.Tests.dll
+        |           |   DevOS.Infrastructure.Tests.pdb
+        |           |   DevOS.Infrastructure.Tests.runtimeconfig.json
+        |           |   Docker.DotNet.dll
+        |           |   Docker.DotNet.Handler.Abstractions.dll
+        |           |   Docker.DotNet.LegacyHttp.dll
+        |           |   Docker.DotNet.NativeHttp.dll
+        |           |   Docker.DotNet.NPipe.dll
+        |           |   Docker.DotNet.Unix.dll
+        |           |   Docker.DotNet.X509.dll
+        |           |   ICSharpCode.SharpZipLib.dll
+        |           |   Microsoft.EntityFrameworkCore.Abstractions.dll
+        |           |   Microsoft.EntityFrameworkCore.dll
+        |           |   Microsoft.EntityFrameworkCore.Relational.dll
+        |           |   Microsoft.Extensions.Caching.Abstractions.dll
+        |           |   Microsoft.Extensions.Caching.Memory.dll
+        |           |   Microsoft.Extensions.Configuration.Abstractions.dll
+        |           |   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+        |           |   Microsoft.Extensions.DependencyInjection.dll
+        |           |   Microsoft.Extensions.Logging.Abstractions.dll
+        |           |   Microsoft.Extensions.Logging.dll
+        |           |   Microsoft.Extensions.Options.dll
+        |           |   Microsoft.Extensions.Primitives.dll
+        |           |   Microsoft.Net.Http.Client.dll
+        |           |   Microsoft.TestPlatform.CommunicationUtilities.dll
+        |           |   Microsoft.TestPlatform.CoreUtilities.dll
+        |           |   Microsoft.TestPlatform.CrossPlatEngine.dll
+        |           |   Microsoft.TestPlatform.PlatformAbstractions.dll
+        |           |   Microsoft.TestPlatform.Utilities.dll
+        |           |   Microsoft.VisualStudio.CodeCoverage.Shim.dll
+        |           |   Microsoft.VisualStudio.TestPlatform.Common.dll
+        |           |   Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+        |           |   Newtonsoft.Json.dll
+        |           |   Npgsql.dll
+        |           |   Npgsql.EntityFrameworkCore.PostgreSQL.dll
+        |           |   Renci.SshNet.dll
+        |           |   Testcontainers.dll
+        |           |   Testcontainers.PostgreSql.dll
+        |           |   testhost.dll
+        |           |   testhost.exe
+        |           |   xunit.abstractions.dll
+        |           |   xunit.assert.dll
+        |           |   xunit.core.dll
+        |           |   xunit.execution.dotnet.dll
+        |           |   xunit.runner.visualstudio.testadapter.dll
+        |           |   
+        |           +---cs
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---de
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---es
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---fr
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---it
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---ja
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---ko
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---pl
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---pt-BR
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---ru
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---tr
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           +---zh-Hans
+        |           |       Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |           |       Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |           |       Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |           |       
+        |           \---zh-Hant
+        |                   Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+        |                   Microsoft.TestPlatform.CoreUtilities.resources.dll
+        |                   Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+        |                   Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+        |                   Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+        |                   
+        \---obj
+            |   DevOS.Infrastructure.Tests.csproj.nuget.dgspec.json
+            |   DevOS.Infrastructure.Tests.csproj.nuget.g.props
+            |   DevOS.Infrastructure.Tests.csproj.nuget.g.targets
+            |   project.assets.json
+            |   project.nuget.cache
+            |   
+            \---Debug
+                \---net10.0
+                    |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+                    |   DevOS.In.0C5F1D03.Up2Date
+                    |   DevOS.Infrastructure.Tests.AssemblyInfo.cs
+                    |   DevOS.Infrastructure.Tests.AssemblyInfoInputs.cache
+                    |   DevOS.Infrastructure.Tests.assets.cache
+                    |   DevOS.Infrastructure.Tests.csproj.AssemblyReference.cache
+                    |   DevOS.Infrastructure.Tests.csproj.CoreCompileInputs.cache
+                    |   DevOS.Infrastructure.Tests.csproj.FileListAbsolute.txt
+                    |   DevOS.Infrastructure.Tests.dll
+                    |   DevOS.Infrastructure.Tests.GeneratedMSBuildEditorConfig.editorconfig
+                    |   DevOS.Infrastructure.Tests.genruntimeconfig.cache
+                    |   DevOS.Infrastructure.Tests.GlobalUsings.g.cs
+                    |   DevOS.Infrastructure.Tests.pdb
+                    |   
+                    +---ref
+                    |       DevOS.Infrastructure.Tests.dll
+                    |       
+                    \---refint
+                            DevOS.Infrastructure.Tests.dll
+                            
