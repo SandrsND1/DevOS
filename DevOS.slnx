@@ -5,4 +5,8 @@
     <Project Path="src/DevOS.Domain/DevOS.Domain.csproj" />
     <Project Path="src/DevOS.Infrastructure/DevOS.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DevOS.Application.Tests/DevOS.Application.Tests.csproj" />
+    <Project Path="tests/DevOS.Infrastructure.Tests/DevOS.Infrastructure.Tests.csproj" />
+  </Folder>
 </Solution>

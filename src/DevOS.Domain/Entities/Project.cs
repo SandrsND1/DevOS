@@ -1,43 +1,30 @@
 namespace DevOS.Domain.Entities
 {
-    // Represents a user project in the DevOS system
     public class Project
     {
-        // Unique identifier for the project, generated upon creation
         public Guid Id { get; private set; }
-
-        // Project name, must be non-empty and max 100 characters
-        public string Name { get; private set; }
-
-        // Optional project description, null if not provided
+        public string Name { get; private set; } = string.Empty;
         public string? Description { get; private set; }
-
-        // Current lifecycle state of the project
         public ProjectStatus Status { get; private set; }
-
-        // Priority level of the project
         public ProjectPriority Priority { get; private set; }
-
-        // Optional deadline, null if no deadline set
         public DateTime? Deadline { get; private set; }
-
-        // UTC timestamp when project was created
         public DateTime CreatedAt { get; private set; }
-
-        // UTC timestamp of last modification
         public DateTime UpdatedAt { get; private set; }
 
         // Parameterless constructor for EF Core
         private Project() { }
 
-        // Creates new project with Planning status and Medium priority
-        public Project(string name, string? description = null, DateTime? deadline = null)
+        public Project(
+            string name,
+            ProjectPriority priority,
+            string? description = null,
+            DateTime? deadline = null)
         {
             Id = Guid.NewGuid();
             SetName(name);
             SetDescription(description);
+            Priority = priority;
             Status = ProjectStatus.Planning;
-            Priority = ProjectPriority.Medium;
             Deadline = deadline;
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
@@ -73,7 +60,6 @@ namespace DevOS.Domain.Entities
             UpdateTimestamp();
         }
 
-        // Normalizes and validates name: trim → check empty → check length → assign
         private void SetName(string name)
         {
             var normalizedName = name?.Trim();
@@ -87,7 +73,6 @@ namespace DevOS.Domain.Entities
             Name = normalizedName;
         }
 
-        // Normalizes description: null or whitespace becomes null, otherwise trimmed
         private void SetDescription(string? description)
         {
             Description = string.IsNullOrWhiteSpace(description) 
@@ -95,14 +80,12 @@ namespace DevOS.Domain.Entities
                 : description.Trim();
         }
 
-        // Updates the UpdatedAt timestamp to current UTC time
         private void UpdateTimestamp()
         {
             UpdatedAt = DateTime.UtcNow;
         }
     }
 
-    // Lifecycle stages of a project
     public enum ProjectStatus
     {
         Planning,
@@ -112,7 +95,6 @@ namespace DevOS.Domain.Entities
         Archived
     }
 
-    // Priority levels for projects
     public enum ProjectPriority
     {
         Low,

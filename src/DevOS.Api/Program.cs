@@ -1,32 +1,18 @@
-using DevOS.Application.Projects;
-using DevOS.Application.Projects.CreateProject;
-using DevOS.Application.Projects.GetProject;
-using DevOS.Application.Projects.GetProjects;
-using DevOS.Infrastructure.Persistence;
-using DevOS.Infrastructure.Persistence.Repositories;
-using Microsoft.EntityFrameworkCore;
+using DevOS.Api.Extensions;
+using DevOS.Api.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Add services
+builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-// Register DbContext with PostgreSQL
-builder.Services.AddDbContext<DevOsDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DevOS")));
-
-// Register repository
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-
-// Register handlers
-builder.Services.AddScoped<CreateProjectHandler>();
-builder.Services.AddScoped<GetProjectsHandler>();
-builder.Services.AddScoped<GetProjectHandler>();
+// Register application and infrastructure services
+builder.Services.AddDevOsServices(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure pipeline
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -34,27 +20,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/api/projects", async (CreateProjectCommand command, CreateProjectHandler handler, CancellationToken cancellationToken) =>
-{
-    var response = await handler.HandleAsync(command, cancellationToken);
-    return Results.Created($"/api/projects/{response.Id}", response);
-});
+app.UseMiddleware<GlobalExceptionHandler>();
 
-app.MapGet("/api/projects", async (GetProjectsHandler handler, CancellationToken cancellationToken) =>
-{
-    var query = new GetProjectsQuery();
-    var response = await handler.HandleAsync(query, cancellationToken);
-    return Results.Ok(response);
-});
-
-app.MapGet("/api/projects/{id:guid}", async (Guid id, GetProjectHandler handler, CancellationToken cancellationToken) =>
-{
-    var query = new GetProjectQuery { Id = id };
-    var response = await handler.HandleAsync(query, cancellationToken);
-    
-    return response is null 
-        ? Results.NotFound() 
-        : Results.Ok(response);
-});
+app.MapControllers();
 
 app.Run();

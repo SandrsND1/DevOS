@@ -4,7 +4,7 @@ namespace DevOS.Domain.Entities
     {
         public Guid Id { get; private set; }
         public Guid ProjectId { get; private set; }
-        public string Title { get; private set; }
+        public string Title { get; private set; } = string.Empty;
         public string? Description { get; private set; }
         public DevTaskStatus Status { get; private set; }
         public TaskPriority Priority { get; private set; }
@@ -17,8 +17,13 @@ namespace DevOS.Domain.Entities
         // Parameterless constructor for EF Core
         private DevTask() { }
 
-        public DevTask(Guid projectId, string title, string? description = null, 
-                       int? estimatedMinutes = null, DateTime? deadline = null)
+        public DevTask(
+            Guid projectId,
+            string title,
+            TaskPriority priority,
+            string? description = null,
+            int? estimatedMinutes = null,
+            DateTime? deadline = null)
         {
             if (projectId == Guid.Empty)
                 throw new ArgumentException("Project ID cannot be empty.", nameof(projectId));
@@ -27,9 +32,9 @@ namespace DevOS.Domain.Entities
             ProjectId = projectId;
             SetTitle(title);
             SetDescription(description);
+            Priority = priority;
             SetEstimatedMinutes(estimatedMinutes);
             Status = DevTaskStatus.Todo;
-            Priority = TaskPriority.Medium;
             Deadline = deadline;
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
@@ -68,19 +73,16 @@ namespace DevOS.Domain.Entities
 
         public void UpdateStatus(DevTaskStatus newStatus)
         {
-            // If already completed and trying to complete again, do nothing
             if (Status == DevTaskStatus.Completed && newStatus == DevTaskStatus.Completed)
                 return;
 
             var oldStatus = Status;
             Status = newStatus;
 
-            // Set CompletedAt when transitioning to Completed
             if (newStatus == DevTaskStatus.Completed)
             {
                 CompletedAt = DateTime.UtcNow;
             }
-            // Clear CompletedAt when transitioning from Completed to any other status
             else if (oldStatus == DevTaskStatus.Completed)
             {
                 CompletedAt = null;
