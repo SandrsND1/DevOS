@@ -1,3 +1,5 @@
+using DevOS.Application.Abstractions.Repositories;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Application.Exceptions;
 using DevOS.Application.Tasks;
 using DevOS.Application.Validation;
@@ -7,13 +9,19 @@ namespace DevOS.Application.Tasks.UpdateTask
     public class UpdateTaskHandler
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IProjectRepository _projectRepository;
+        private readonly ICurrentUserService _currentUserService;
         private readonly UpdateTaskValidator _validator;
 
         public UpdateTaskHandler(
             ITaskRepository taskRepository,
+            IProjectRepository projectRepository,
+            ICurrentUserService currentUserService,
             UpdateTaskValidator validator)
         {
             _taskRepository = taskRepository;
+            _projectRepository = projectRepository;
+            _currentUserService = currentUserService;
             _validator = validator;
         }
 
@@ -21,10 +29,23 @@ namespace DevOS.Application.Tasks.UpdateTask
             UpdateTaskCommand command,
             CancellationToken cancellationToken = default)
         {
+            var userId = _currentUserService.UserId;
+            if (userId == Guid.Empty)
+            {
+                throw new UnauthorizedAccessException("User must be authenticated.");
+            }
+
             var validationErrors = _validator.Validate(command);
 
             if (validationErrors.Count > 0)
                 throw new ValidationException(validationErrors);
+
+            // Проверяем, что проект принадлежит пользователю
+            var project = await _projectRepository.GetByIdAsync(command.ProjectId, userId, cancellationToken);
+            if (project == null)
+            {
+                throw new ProjectNotFoundException(command.ProjectId);
+            }
 
             var task = await _taskRepository.GetByIdAsync(command.TaskId, command.ProjectId, cancellationToken);
 

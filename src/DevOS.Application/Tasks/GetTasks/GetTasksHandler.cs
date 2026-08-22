@@ -1,5 +1,6 @@
 using DevOS.Application.Exceptions;
 using DevOS.Application.Abstractions.Repositories;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Application.Tasks;
 using DevOS.Application.Validation;
 using DevOS.Domain.Entities;
@@ -10,15 +11,18 @@ namespace DevOS.Application.Tasks.GetTasks
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IProjectRepository _projectRepository;
+        private readonly ICurrentUserService _currentUserService;
         private readonly GetTasksValidator _validator;
 
         public GetTasksHandler(
             ITaskRepository taskRepository,
             IProjectRepository projectRepository,
+            ICurrentUserService currentUserService,
             GetTasksValidator validator)
         {
             _taskRepository = taskRepository;
             _projectRepository = projectRepository;
+            _currentUserService = currentUserService;
             _validator = validator;
         }
 
@@ -26,12 +30,18 @@ namespace DevOS.Application.Tasks.GetTasks
             GetTasksQuery query,
             CancellationToken cancellationToken = default)
         {
+            var userId = _currentUserService.UserId;
+            if (userId == Guid.Empty)
+            {
+                throw new UnauthorizedAccessException("User must be authenticated.");
+            }
+
             var validationErrors = _validator.Validate(query);
 
             if (validationErrors.Count > 0)
                 throw new ValidationException(validationErrors);
 
-            var project = await _projectRepository.GetByIdAsync(query.ProjectId, cancellationToken);
+            var project = await _projectRepository.GetByIdAsync(query.ProjectId, userId, cancellationToken);
 
             if (project is null)
                 throw new ProjectNotFoundException(query.ProjectId);

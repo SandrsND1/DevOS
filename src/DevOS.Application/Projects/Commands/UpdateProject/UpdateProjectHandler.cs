@@ -1,5 +1,5 @@
 using DevOS.Application.Abstractions.Repositories;
-using DevOS.Application.Exceptions;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Application.Projects.DTOs;
 
 namespace DevOS.Application.Projects.Commands.UpdateProject
@@ -7,24 +7,36 @@ namespace DevOS.Application.Projects.Commands.UpdateProject
     public class UpdateProjectHandler
     {
         private readonly IProjectRepository _projectRepository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UpdateProjectHandler(IProjectRepository projectRepository)
+        public UpdateProjectHandler(
+            IProjectRepository projectRepository,
+            ICurrentUserService currentUserService)
         {
             _projectRepository = projectRepository;
+            _currentUserService = currentUserService;
         }
 
-        public async Task<ProjectDto> HandleAsync(
+        public async Task<ProjectDto?> HandleAsync(
             UpdateProjectCommand command,
             CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrWhiteSpace(command.Name))
-                throw new ArgumentException("Project name cannot be empty or whitespace.", nameof(command.Name));
+            var userId = _currentUserService.UserId;
 
-            var project = await _projectRepository.GetByIdAsync(command.Id, cancellationToken);
+            if (userId == Guid.Empty)
+            {
+                throw new UnauthorizedAccessException("User must be authenticated.");
+            }
 
-            if (project is null)
-                throw new ProjectNotFoundException(command.Id);
+            // Ищем проект строго в рамках аккаунта текущего пользователя
+            var project = await _projectRepository.GetByIdAsync(command.Id, userId, cancellationToken);
 
+            if (project == null)
+            {
+                return null; // Вернет 404 (NotFound) в контроллере
+            }
+
+            // Обновляем состояние через методы доменной сущности
             project.UpdateName(command.Name);
             project.UpdateDescription(command.Description);
             project.UpdatePriority(command.Priority);

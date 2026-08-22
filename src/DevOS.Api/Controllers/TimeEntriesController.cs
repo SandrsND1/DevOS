@@ -1,74 +1,38 @@
 using DevOS.Application.TimeEntries.Commands.CreateTimeEntry;
 using DevOS.Application.TimeEntries.Commands.DeleteTimeEntry;
 using DevOS.Application.TimeEntries.Commands.UpdateTimeEntry;
+using DevOS.Application.TimeEntries.DTOs;
 using DevOS.Application.TimeEntries.Queries.GetTimeEntries;
-using DevOS.Application.TimeEntries.Queries.GetTimeEntryById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevOS.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/projects/{projectId:guid}/time-entries")]
     public class TimeEntriesController : ControllerBase
     {
         private readonly CreateTimeEntryHandler _createTimeEntryHandler;
-        private readonly GetTimeEntryByIdHandler _getTimeEntryByIdHandler;
-        private readonly GetTimeEntriesHandler _getTimeEntriesHandler;
         private readonly UpdateTimeEntryHandler _updateTimeEntryHandler;
         private readonly DeleteTimeEntryHandler _deleteTimeEntryHandler;
+        private readonly GetTimeEntriesHandler _getTimeEntriesHandler;
 
         public TimeEntriesController(
             CreateTimeEntryHandler createTimeEntryHandler,
-            GetTimeEntryByIdHandler getTimeEntryByIdHandler,
-            GetTimeEntriesHandler getTimeEntriesHandler,
             UpdateTimeEntryHandler updateTimeEntryHandler,
-            DeleteTimeEntryHandler deleteTimeEntryHandler)
+            DeleteTimeEntryHandler deleteTimeEntryHandler,
+            GetTimeEntriesHandler getTimeEntriesHandler)
         {
             _createTimeEntryHandler = createTimeEntryHandler;
-            _getTimeEntryByIdHandler = getTimeEntryByIdHandler;
-            _getTimeEntriesHandler = getTimeEntriesHandler;
             _updateTimeEntryHandler = updateTimeEntryHandler;
             _deleteTimeEntryHandler = deleteTimeEntryHandler;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(
-            Guid projectId,
-            [FromBody] CreateTimeEntryCommand command,
-            CancellationToken cancellationToken)
-        {
-            var createCommand = new CreateTimeEntryCommand
-            {
-                ProjectId = projectId,
-                TaskId = command.TaskId,
-                StartedAt = command.StartedAt,
-                EndedAt = command.EndedAt,
-                Description = command.Description
-            };
-
-            var result = await _createTimeEntryHandler.HandleAsync(createCommand, cancellationToken);
-            return CreatedAtAction(nameof(GetById), new { projectId, entryId = result.Id }, result);
-        }
-
-        [HttpGet("{entryId:guid}")]
-        public async Task<IActionResult> GetById(
-            Guid projectId,
-            Guid entryId,
-            CancellationToken cancellationToken)
-        {
-            var query = new GetTimeEntryByIdQuery
-            {
-                ProjectId = projectId,
-                EntryId = entryId
-            };
-
-            var result = await _getTimeEntryByIdHandler.HandleAsync(query, cancellationToken);
-            return Ok(result);
+            _getTimeEntriesHandler = getTimeEntriesHandler;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetList(
-            Guid projectId,
+        public async Task<ActionResult<List<TimeEntryDto>>> GetTimeEntries(
+            [FromRoute] Guid projectId,
             [FromQuery] Guid? taskId,
             [FromQuery] DateTime? from,
             [FromQuery] DateTime? to,
@@ -83,43 +47,77 @@ namespace DevOS.Api.Controllers
             };
 
             var result = await _getTimeEntriesHandler.HandleAsync(query, cancellationToken);
+            if (result == null)
+            {
+                return NotFound(new { message = $"Project with ID '{projectId}' was not found." });
+            }
+
             return Ok(result);
         }
 
-        [HttpPut("{entryId:guid}")]
-        public async Task<IActionResult> Update(
-            Guid projectId,
-            Guid entryId,
+        [HttpPost]
+        public async Task<ActionResult<TimeEntryDto>> Create(
+            [FromRoute] Guid projectId,
+            [FromBody] CreateTimeEntryCommand command,
+            CancellationToken cancellationToken)
+        {
+            // Передаем параметры через позиционный конструктор record
+            var createCommand = new CreateTimeEntryCommand(
+                projectId,
+                command.StartedAt,
+                command.EndedAt,
+                command.Description,
+                command.TaskId
+            );
+
+            var result = await _createTimeEntryHandler.HandleAsync(createCommand, cancellationToken);
+            if (result == null)
+            {
+                return NotFound(new { message = $"Project with ID '{projectId}' was not found." });
+            }
+
+            return CreatedAtAction(nameof(GetTimeEntries), new { projectId }, result);
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<ActionResult<TimeEntryDto>> Update(
+            [FromRoute] Guid projectId,
+            [FromRoute] Guid id,
             [FromBody] UpdateTimeEntryCommand command,
             CancellationToken cancellationToken)
         {
-            var updateCommand = new UpdateTimeEntryCommand
-            {
-                EntryId = entryId,
-                ProjectId = projectId,
-                TaskId = command.TaskId,
-                StartedAt = command.StartedAt,
-                EndedAt = command.EndedAt,
-                Description = command.Description
-            };
+            var updateCommand = new UpdateTimeEntryCommand(
+                id,
+                projectId,
+                command.StartedAt,
+                command.EndedAt,
+                command.Description,
+                command.TaskId
+            );
 
             var result = await _updateTimeEntryHandler.HandleAsync(updateCommand, cancellationToken);
+            if (result == null)
+            {
+                return NotFound(new { message = $"TimeEntry with ID '{id}' or Project was not found." });
+            }
+
             return Ok(result);
         }
 
-        [HttpDelete("{entryId:guid}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(
-            Guid projectId,
-            Guid entryId,
+            [FromRoute] Guid projectId,
+            [FromRoute] Guid id,
             CancellationToken cancellationToken)
         {
-            var command = new DeleteTimeEntryCommand
-            {
-                ProjectId = projectId,
-                EntryId = entryId
-            };
+            var command = new DeleteTimeEntryCommand(id, projectId);
+            var isDeleted = await _deleteTimeEntryHandler.HandleAsync(command, cancellationToken);
 
-            await _deleteTimeEntryHandler.HandleAsync(command, cancellationToken);
+            if (!isDeleted)
+            {
+                return NotFound(new { message = $"TimeEntry with ID '{id}' or Project was not found." });
+            }
+
             return NoContent();
         }
     }

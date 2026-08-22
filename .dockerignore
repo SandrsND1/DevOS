@@ -1,0 +1,15 @@
+.git/
+.gitignore
+.vs/
+.vscode/
+.idea/
+**/bin/
+**/obj/
+**/out/
+**/tests/
+**/*.Tests/
+**/TestResults/
+*.md
+docker-compose*.yml
+Dockerfile*
+.env

@@ -1,8 +1,7 @@
 using DevOS.Application.Abstractions.Repositories;
-using DevOS.Application.Exceptions;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Application.TimeEntries.DTOs;
-using DevOS.Application.Validation;
-using DevOS.Domain.Entities;
+using DevOS.Application.TimeEntries.Mappings;
 
 namespace DevOS.Application.TimeEntries.Queries.GetTimeEntries
 {
@@ -10,67 +9,45 @@ namespace DevOS.Application.TimeEntries.Queries.GetTimeEntries
     {
         private readonly ITimeEntryRepository _timeEntryRepository;
         private readonly IProjectRepository _projectRepository;
-        private readonly GetTimeEntriesValidator _validator;
+        private readonly ICurrentUserService _currentUserService;
 
         public GetTimeEntriesHandler(
             ITimeEntryRepository timeEntryRepository,
             IProjectRepository projectRepository,
-            GetTimeEntriesValidator validator)
+            ICurrentUserService currentUserService)
         {
             _timeEntryRepository = timeEntryRepository;
             _projectRepository = projectRepository;
-            _validator = validator;
+            _currentUserService = currentUserService;
         }
 
-        public async Task<List<TimeEntryDto>> HandleAsync(
+        public async Task<List<TimeEntryDto>?> HandleAsync(
             GetTimeEntriesQuery query,
             CancellationToken cancellationToken = default)
         {
-            var validationErrors = _validator.Validate(query);
-            if (validationErrors.Count > 0)
-                throw new ValidationException(validationErrors);
-
-            var project = await _projectRepository.GetByIdAsync(query.ProjectId, cancellationToken);
-            if (project is null)
-                throw new ProjectNotFoundException(query.ProjectId);
-
-            List<TimeEntry> entries;
-
-            if (query.From.HasValue && query.To.HasValue)
+            var userId = _currentUserService.UserId;
+            if (userId == Guid.Empty)
             {
-                entries = await _timeEntryRepository.GetByPeriodAsync(
-                    query.ProjectId,
-                    query.From.Value,
-                    query.To.Value,
-                    cancellationToken);
-
-                if (query.TaskId.HasValue)
-                {
-                    entries = entries.Where(e => e.TaskId == query.TaskId.Value).ToList();
-                }
-            }
-            else if (query.TaskId.HasValue)
-            {
-                entries = await _timeEntryRepository.GetAllByTaskIdAsync(query.TaskId.Value, cancellationToken);
-                entries = entries.Where(e => e.ProjectId == query.ProjectId).ToList();
-            }
-            else
-            {
-                entries = await _timeEntryRepository.GetAllByProjectIdAsync(query.ProjectId, cancellationToken);
+                throw new UnauthorizedAccessException("User must be authenticated.");
             }
 
-            return entries.Select(e => new TimeEntryDto
+            // 1. Security Check: проверяем владение проектом
+            var project = await _projectRepository.GetByIdAsync(query.ProjectId, userId, cancellationToken);
+            if (project == null)
             {
-                Id = e.Id,
-                ProjectId = e.ProjectId,
-                TaskId = e.TaskId,
-                StartedAt = e.StartedAt,
-                EndedAt = e.EndedAt,
-                DurationMinutes = e.DurationMinutes,
-                Description = e.Description,
-                CreatedAt = e.CreatedAt,
-                UpdatedAt = e.UpdatedAt
-            }).ToList();
+                return null;
+            }
+
+            // 2. Выборка через единый фильтрованный метод в БД
+            var entries = await _timeEntryRepository.GetFilteredAsync(
+                query.ProjectId,
+                query.TaskId,
+                query.From,
+                query.To,
+                cancellationToken
+            );
+
+            return entries.ToDtoList().ToList();
         }
     }
 }

@@ -3,6 +3,7 @@ namespace DevOS.Domain.Entities
     public class Project
     {
         public Guid Id { get; private set; }
+        public Guid UserId { get; private set; }
         public string Name { get; private set; } = string.Empty;
         public string? Description { get; private set; }
         public ProjectStatus Status { get; private set; }
@@ -15,12 +16,14 @@ namespace DevOS.Domain.Entities
         private Project() { }
 
         public Project(
+            Guid userId, // <-- Передаем UserId из JWT через Handler
             string name,
             ProjectPriority priority,
             string? description = null,
             DateTime? deadline = null)
         {
             Id = Guid.NewGuid();
+            SetUserId(userId); // <-- Присваиваем с валидацией
             SetName(name);
             SetDescription(description);
             Priority = priority;
@@ -58,6 +61,14 @@ namespace DevOS.Domain.Entities
         {
             Deadline = deadline;
             UpdateTimestamp();
+        }
+
+        private void SetUserId(Guid userId)
+        {
+            if (userId == Guid.Empty)
+                throw new ArgumentException("Project must belong to a valid user.", nameof(userId));
+
+            UserId = userId;
         }
 
         private void SetName(string name)

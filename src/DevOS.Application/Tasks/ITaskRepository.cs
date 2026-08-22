@@ -9,6 +9,7 @@ namespace DevOS.Application.Tasks
         Task<DevTask?> GetByIdAsync(Guid taskId, Guid projectId, CancellationToken cancellationToken = default);
         Task UpdateAsync(DevTask task, CancellationToken cancellationToken = default);
         Task DeleteAsync(DevTask task, CancellationToken cancellationToken = default);
+        Task<ProjectTaskStatistics> GetTaskStatisticsAsync(Guid projectId, CancellationToken cancellationToken = default);
         Task<int> GetTotalCountAsync(
             Guid projectId,
             DevTaskStatus? status,
@@ -26,4 +27,10 @@ namespace DevOS.Application.Tasks
             string sortDirection,
             CancellationToken cancellationToken = default);
     }
+    public class ProjectTaskStatistics
+{
+    public int TotalTasks { get; init; }
+    public int CompletedTasks { get; init; }
+    public Dictionary<string, int> TasksByStatus { get; init; } = new();
+}
 }

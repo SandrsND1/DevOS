@@ -1,0 +1,547 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   DevOS Design System
+   ========================================================= */
+
+@layer base {
+  html {
+    @apply bg-devos-dark;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-devos-dark text-gray-200 antialiased;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #30303a transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-devos-border rounded-full;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    @apply select-none;
+  }
+
+  ::selection {
+    @apply bg-devos-primary/30 text-white;
+  }
+}
+
+/* =========================================================
+   Components
+   ========================================================= */
+
+@layer components {
+
+  /* -------------------------------------------------------
+     Page
+     ------------------------------------------------------- */
+
+  .devos-page {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+  }
+
+  .devos-page-header {
+    @apply flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6;
+  }
+
+  .devos-page-title {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight text-white;
+  }
+
+  .devos-page-description {
+    @apply mt-1 text-sm text-gray-400;
+  }
+
+
+  /* -------------------------------------------------------
+     Cards
+     ------------------------------------------------------- */
+
+  .devos-card {
+    @apply bg-devos-surface border border-devos-border rounded-xl
+      transition-colors duration-200;
+  }
+
+  .devos-card-hover {
+    @apply hover:border-gray-600 hover:bg-devos-surface/80;
+  }
+
+  .devos-card-interactive {
+    @apply cursor-pointer
+      hover:border-devos-primary/40
+      hover:bg-devos-surface/80
+      transition-all duration-200;
+  }
+
+  .devos-card-header {
+    @apply flex items-center justify-between
+      px-5 py-4
+      border-b border-devos-border;
+  }
+
+  .devos-card-body {
+    @apply p-5;
+  }
+
+
+  /* -------------------------------------------------------
+     Inputs
+     ------------------------------------------------------- */
+
+  .devos-input {
+    @apply w-full px-3.5 py-2.5
+      bg-devos-dark
+      border border-devos-border
+      rounded-lg
+      text-sm text-white
+      placeholder:text-gray-500
+      outline-none
+      transition-all duration-150
+      focus:border-devos-primary
+      focus:ring-2
+      focus:ring-devos-primary/10;
+  }
+
+  .devos-input:hover {
+    @apply border-gray-600;
+  }
+
+  .devos-input:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .devos-input-error {
+    @apply border-red-500/60
+      focus:border-red-500
+      focus:ring-red-500/10;
+  }
+
+  .devos-textarea {
+    @apply devos-input resize-y min-h-[100px];
+  }
+
+  .devos-select {
+    @apply devos-input appearance-none cursor-pointer;
+  }
+
+
+  /* -------------------------------------------------------
+     Buttons
+     ------------------------------------------------------- */
+
+  .devos-button {
+    @apply inline-flex items-center justify-center
+      gap-2
+      rounded-lg
+      font-medium
+      text-sm
+      transition-all duration-150
+      outline-none
+      disabled:opacity-50
+      disabled:cursor-not-allowed
+      focus-visible:ring-2
+      focus-visible:ring-devos-primary/40;
+  }
+
+  .devos-button-primary {
+    @apply devos-button
+      px-4 py-2.5
+      bg-devos-primary
+      hover:bg-devos-secondary
+      text-white
+      shadow-sm
+      active:scale-[0.98];
+  }
+
+  .devos-button-secondary {
+    @apply devos-button
+      px-4 py-2.5
+      bg-devos-surface
+      hover:bg-devos-border
+      text-gray-200
+      border border-devos-border;
+  }
+
+  .devos-button-ghost {
+    @apply devos-button
+      px-3 py-2
+      bg-transparent
+      text-gray-400
+      hover:bg-devos-surface
+      hover:text-white;
+  }
+
+  .devos-button-danger {
+    @apply devos-button
+      px-4 py-2.5
+      bg-red-500/10
+      hover:bg-red-500/20
+      text-red-400
+      border border-red-500/20;
+  }
+
+  .devos-icon-button {
+   @apply w-8 h-8 inline-flex items-center justify-center rounded-lg
+     text-gray-500 border border-transparent
+     hover:text-white hover:bg-devos-border/50
+     hover:border-devos-border
+     transition-colors duration-150;
+  }
+
+
+  /* -------------------------------------------------------
+     Badges
+     ------------------------------------------------------- */
+
+  .devos-badge {
+    @apply inline-flex items-center
+      gap-1.5
+      px-2.5 py-1
+      rounded-md
+      text-xs
+      font-medium
+      border;
+  }
+
+  .devos-badge-success {
+    @apply devos-badge
+      bg-green-500/10
+      text-green-400
+      border-green-500/20;
+  }
+
+  .devos-badge-warning {
+    @apply devos-badge
+      bg-yellow-500/10
+      text-yellow-400
+      border-yellow-500/20;
+  }
+
+  .devos-badge-danger {
+    @apply devos-badge
+      bg-red-500/10
+      text-red-400
+      border-red-500/20;
+  }
+
+  .devos-badge-info {
+    @apply devos-badge
+      bg-blue-500/10
+      text-blue-400
+      border-blue-500/20;
+  }
+
+  .devos-badge-neutral {
+    @apply devos-badge
+      bg-gray-500/10
+      text-gray-400
+      border-gray-500/20;
+  }
+
+
+  /* -------------------------------------------------------
+     Form labels
+     ------------------------------------------------------- */
+
+  .devos-label {
+    @apply block
+      text-xs
+      font-medium
+      text-gray-400
+      mb-2;
+  }
+
+  .devos-helper {
+    @apply mt-1.5 text-xs text-gray-500;
+  }
+
+  .devos-error {
+    @apply mt-1.5 text-xs text-red-400;
+  }
+
+
+  /* -------------------------------------------------------
+     Modal
+     ------------------------------------------------------- */
+
+  .devos-modal-backdrop {
+    @apply fixed inset-0
+      z-50
+      flex items-center justify-center
+      p-4
+      bg-black/70
+      backdrop-blur-sm;
+  }
+
+  .devos-modal {
+    @apply w-full
+      bg-devos-surface
+      border border-devos-border
+      rounded-xl
+      shadow-2xl
+      overflow-hidden;
+  }
+
+  .devos-modal-header {
+    @apply flex items-center justify-between
+      px-6 py-4
+      border-b border-devos-border;
+  }
+
+  .devos-modal-title {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .devos-modal-body {
+    @apply p-6;
+  }
+
+  .devos-modal-footer {
+    @apply flex items-center justify-end
+      gap-3
+      px-6 py-4
+      border-t border-devos-border;
+  }
+
+
+  /* -------------------------------------------------------
+     Empty state
+     ------------------------------------------------------- */
+
+  .devos-empty {
+    @apply flex flex-col
+      items-center
+      justify-center
+      text-center
+      py-16
+      px-6
+      bg-devos-surface
+      border border-devos-border
+      rounded-xl;
+  }
+
+  .devos-empty-icon {
+    @apply flex items-center justify-center
+      w-12 h-12
+      rounded-xl
+      bg-devos-dark
+      border border-devos-border
+      text-gray-500
+      mb-4;
+  }
+
+  .devos-empty-title {
+    @apply text-base
+      font-semibold
+      text-white;
+  }
+
+  .devos-empty-description {
+    @apply mt-1
+      max-w-md
+      text-sm
+      text-gray-500;
+  }
+
+
+  /* -------------------------------------------------------
+     Loading
+     ------------------------------------------------------- */
+
+  .devos-spinner {
+    @apply w-5 h-5
+      rounded-full
+      border-2
+      border-devos-border
+      border-t-devos-primary
+      animate-spin;
+  }
+
+  .devos-loading {
+    @apply flex
+      items-center
+      justify-center
+      min-h-[240px];
+  }
+
+
+  /* -------------------------------------------------------
+     Divider
+     ------------------------------------------------------- */
+
+  .devos-divider {
+    @apply border-t border-devos-border;
+  }
+
+
+  /* -------------------------------------------------------
+     Progress
+     ------------------------------------------------------- */
+
+  .devos-progress {
+    @apply w-full
+      h-2
+      overflow-hidden
+      rounded-full
+      bg-devos-dark;
+  }
+
+  .devos-progress-bar {
+    @apply h-full
+      rounded-full
+      bg-devos-primary
+      transition-all duration-500;
+  }
+
+
+  /* -------------------------------------------------------
+     Stat
+     ------------------------------------------------------- */
+
+  .devos-stat {
+    @apply bg-devos-surface
+      border border-devos-border
+      rounded-xl
+      p-5;
+  }
+
+  .devos-stat-label {
+    @apply text-sm text-gray-500;
+  }
+
+  .devos-stat-value {
+    @apply mt-1
+      text-2xl
+      font-bold
+      tracking-tight
+      text-white;
+  }
+
+  .devos-stat-change {
+    @apply mt-2
+      text-xs
+      font-medium;
+  }
+
+
+  /* -------------------------------------------------------
+     Table
+     ------------------------------------------------------- */
+
+  .devos-table-wrapper {
+    @apply overflow-hidden
+      bg-devos-surface
+      border border-devos-border
+      rounded-xl;
+  }
+
+  .devos-table {
+    @apply w-full text-left;
+  }
+
+  .devos-table thead {
+    @apply bg-devos-dark/50
+      border-b border-devos-border;
+  }
+
+  .devos-table th {
+    @apply px-5 py-3
+      text-xs
+      font-medium
+      uppercase
+      tracking-wider
+      text-gray-500;
+  }
+
+  .devos-table td {
+    @apply px-5 py-4
+      text-sm
+      text-gray-300
+      border-b border-devos-border;
+  }
+
+  .devos-table tbody tr {
+    @apply transition-colors duration-150
+      hover:bg-devos-dark/30;
+  }
+
+  .devos-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+
+  /* -------------------------------------------------------
+     Search
+     ------------------------------------------------------- */
+
+  .devos-search {
+    @apply relative;
+  }
+
+  .devos-search input {
+    @apply devos-input pl-10;
+  }
+
+  .devos-search-icon {
+    @apply absolute
+      left-3
+      top-1/2
+      -translate-y-1/2
+      w-4 h-4
+      text-gray-500
+      pointer-events-none;
+  }
+}
+
+/* =========================================================
+   Utilities
+   ========================================================= */
+
+@layer utilities {
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .devos-glow {
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.08),
+                0 8px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .devos-surface-hover {
+    @apply transition-colors duration-150
+      hover:bg-devos-surface;
+  }
+}

@@ -1,0 +1,75 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: devos-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: UTC
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - devos-network
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: src/DevOS.Api/Dockerfile
+    container_name: devos-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+
+      ConnectionStrings__DevOS: "Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Pooling=true"
+
+      Jwt__Key: ${JWT_KEY}
+      Jwt__Issuer: ${JWT_ISSUER}
+      Jwt__Audience: ${JWT_AUDIENCE}
+
+      Logging__LogLevel__Default: Information
+      Logging__LogLevel__Microsoft_AspNetCore: Warning
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - devos-network
+
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./src/DevOS.Client
+      dockerfile: Dockerfile
+    container_name: devos-client
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - devos-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    name: devos-postgres-data
+
+networks:
+  devos-network:
+    name: devos-network
+    driver: bridge

@@ -135,5 +135,32 @@ namespace DevOS.Infrastructure.Persistence.Repositories
                 .Take(pageSize)
                 .ToListAsync(cancellationToken);
         }
+        public async Task<ProjectTaskStatistics> GetTaskStatisticsAsync(
+            Guid projectId, 
+            CancellationToken cancellationToken = default)
+        {
+            var tasksQuery = _context.DevTasks
+                .AsNoTracking()
+                .Where(t => t.ProjectId == projectId);
+
+            var totalTasks = await tasksQuery.CountAsync(cancellationToken);
+
+            var completedTasks = await tasksQuery
+                .CountAsync(t => t.Status == DevTaskStatus.Completed, cancellationToken);
+
+            var tasksByStatus = await tasksQuery
+                .GroupBy(t => t.Status)
+                .ToDictionaryAsync(
+                    g => g.Key.ToString(),
+                    g => g.Count(),
+                   cancellationToken);
+
+            return new ProjectTaskStatistics
+            {
+                TotalTasks = totalTasks,
+                CompletedTasks = completedTasks,
+                TasksByStatus = tasksByStatus
+            };
+        }
     }
 }

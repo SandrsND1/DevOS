@@ -3,10 +3,12 @@ using DevOS.Application.Tasks.DeleteTask;
 using DevOS.Application.Tasks.GetTask;
 using DevOS.Application.Tasks.GetTasks;
 using DevOS.Application.Tasks.UpdateTask;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevOS.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/projects/{projectId:guid}/tasks")]
     public class TasksController : ControllerBase
@@ -48,6 +50,12 @@ namespace DevOS.Api.Controllers
             };
 
             var result = await _createTaskHandler.HandleAsync(createCommand, cancellationToken);
+            
+            if (result == null)
+            {
+                return NotFound(new { message = $"Project with ID '{projectId}' was not found." });
+            }
+
             return CreatedAtAction(nameof(GetById), new { projectId, taskId = result.Id }, result);
         }
 
@@ -64,6 +72,12 @@ namespace DevOS.Api.Controllers
             };
 
             var result = await _getTaskHandler.HandleAsync(query, cancellationToken);
+            
+            if (result == null)
+            {
+                return NotFound(new { message = $"Task with ID '{taskId}' was not found." });
+            }
+
             return Ok(result);
         }
 
@@ -109,6 +123,12 @@ namespace DevOS.Api.Controllers
             };
 
             var result = await _updateTaskHandler.HandleAsync(updateCommand, cancellationToken);
+            
+            if (result == null)
+            {
+                return NotFound(new { message = $"Task with ID '{taskId}' was not found." });
+            }
+
             return Ok(result);
         }
 

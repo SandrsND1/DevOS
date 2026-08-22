@@ -1,43 +1,46 @@
-using DevOS.Application.Exceptions;
-using DevOS.Application.Tasks;
+using DevOS.Application.Abstractions.Repositories;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Application.TimeEntries.DTOs;
-using DevOS.Application.Validation;
+using DevOS.Application.TimeEntries.Mappings;
 
 namespace DevOS.Application.TimeEntries.Commands.UpdateTimeEntry
 {
     public class UpdateTimeEntryHandler
     {
         private readonly ITimeEntryRepository _timeEntryRepository;
-        private readonly ITaskRepository _taskRepository;
-        private readonly UpdateTimeEntryValidator _validator;
+        private readonly IProjectRepository _projectRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         public UpdateTimeEntryHandler(
             ITimeEntryRepository timeEntryRepository,
-            ITaskRepository taskRepository,
-            UpdateTimeEntryValidator validator)
+            IProjectRepository projectRepository,
+            ICurrentUserService currentUserService)
         {
             _timeEntryRepository = timeEntryRepository;
-            _taskRepository = taskRepository;
-            _validator = validator;
+            _projectRepository = projectRepository;
+            _currentUserService = currentUserService;
         }
 
-        public async Task<TimeEntryDto> HandleAsync(
+        public async Task<TimeEntryDto?> HandleAsync(
             UpdateTimeEntryCommand command,
             CancellationToken cancellationToken = default)
         {
-            var validationErrors = _validator.Validate(command);
-            if (validationErrors.Count > 0)
-                throw new ValidationException(validationErrors);
-
-            var timeEntry = await _timeEntryRepository.GetByIdAsync(command.EntryId, command.ProjectId, cancellationToken);
-            if (timeEntry is null)
-                throw new TimeEntryNotFoundException(command.EntryId);
-
-            if (command.TaskId.HasValue && command.TaskId.Value != Guid.Empty)
+            var userId = _currentUserService.UserId;
+            if (userId == Guid.Empty)
             {
-                var task = await _taskRepository.GetByIdAsync(command.TaskId.Value, command.ProjectId, cancellationToken);
-                if (task is null)
-                    throw new TaskNotFoundException(command.TaskId.Value);
+                throw new UnauthorizedAccessException("User must be authenticated.");
+            }
+
+            var project = await _projectRepository.GetByIdAsync(command.ProjectId, userId, cancellationToken);
+            if (project == null)
+            {
+                return null;
+            }
+
+            var timeEntry = await _timeEntryRepository.GetByIdTrackedAsync(command.Id, cancellationToken);
+            if (timeEntry == null || timeEntry.ProjectId != command.ProjectId)
+            {
+                return null;
             }
 
             timeEntry.UpdateTimeRange(command.StartedAt, command.EndedAt);
@@ -46,18 +49,7 @@ namespace DevOS.Application.TimeEntries.Commands.UpdateTimeEntry
 
             await _timeEntryRepository.UpdateAsync(timeEntry, cancellationToken);
 
-            return new TimeEntryDto
-            {
-                Id = timeEntry.Id,
-                ProjectId = timeEntry.ProjectId,
-                TaskId = timeEntry.TaskId,
-                StartedAt = timeEntry.StartedAt,
-                EndedAt = timeEntry.EndedAt,
-                DurationMinutes = timeEntry.DurationMinutes,
-                Description = timeEntry.Description,
-                CreatedAt = timeEntry.CreatedAt,
-                UpdatedAt = timeEntry.UpdatedAt
-            };
+            return timeEntry.ToDto();
         }
     }
 }

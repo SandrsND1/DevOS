@@ -1,4 +1,5 @@
 using DevOS.Application.Abstractions.Repositories;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Application.Projects.DTOs;
 
 namespace DevOS.Application.Projects.Queries.GetProjects
@@ -6,16 +7,27 @@ namespace DevOS.Application.Projects.Queries.GetProjects
     public class GetProjectsHandler
     {
         private readonly IProjectRepository _projectRepository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public GetProjectsHandler(IProjectRepository projectRepository)
+        public GetProjectsHandler(
+            IProjectRepository projectRepository,
+            ICurrentUserService currentUserService)
         {
             _projectRepository = projectRepository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<PagedResult<ProjectListItemDto>> HandleAsync(
             GetProjectsQuery query,
             CancellationToken cancellationToken = default)
         {
+            var userId = _currentUserService.UserId;
+            
+            if (userId == Guid.Empty)
+            {
+                throw new UnauthorizedAccessException("User must be authenticated.");
+            }
+
             if (query.Page < 1)
                 throw new ArgumentException("Page must be greater than or equal to 1.", nameof(query.Page));
 
@@ -23,12 +35,14 @@ namespace DevOS.Application.Projects.Queries.GetProjects
                 throw new ArgumentException("PageSize must be greater than or equal to 1.", nameof(query.PageSize));
 
             var totalCount = await _projectRepository.GetTotalCountAsync(
+                userId,
                 query.Status,
                 query.Priority,
                 query.Search,
                 cancellationToken);
 
             var projects = await _projectRepository.GetPagedAsync(
+                userId,
                 query.Page,
                 query.PageSize,
                 query.Status,

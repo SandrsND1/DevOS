@@ -1,7 +1,5 @@
-using DevOS.Application.Exceptions;
 using DevOS.Application.Abstractions.Repositories;
-using DevOS.Application.Tasks;
-using DevOS.Application.Validation;
+using DevOS.Application.Abstractions.Services;
 using DevOS.Domain.Entities;
 
 namespace DevOS.Application.Tasks.CreateTask
@@ -10,31 +8,34 @@ namespace DevOS.Application.Tasks.CreateTask
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IProjectRepository _projectRepository;
-        private readonly CreateTaskValidator _validator;
+        private readonly ICurrentUserService _currentUserService;
 
         public CreateTaskHandler(
             ITaskRepository taskRepository,
             IProjectRepository projectRepository,
-            CreateTaskValidator validator)
+            ICurrentUserService currentUserService)
         {
             _taskRepository = taskRepository;
             _projectRepository = projectRepository;
-            _validator = validator;
+            _currentUserService = currentUserService;
         }
 
-        public async Task<CreateTaskResponse> HandleAsync(
+        public async Task<CreateTaskResponse?> HandleAsync(
             CreateTaskCommand command,
             CancellationToken cancellationToken = default)
         {
-            var validationErrors = _validator.Validate(command);
+            var userId = _currentUserService.UserId;
+            if (userId == Guid.Empty)
+            {
+                throw new UnauthorizedAccessException("User must be authenticated.");
+            }
 
-            if (validationErrors.Count > 0)
-                throw new ValidationException(validationErrors);
-
-            var project = await _projectRepository.GetByIdAsync(command.ProjectId, cancellationToken);
-
-            if (project is null)
-                throw new ProjectNotFoundException(command.ProjectId);
+            // Проверяем, существует ли проект у ТЕКУЩЕГО пользователя
+            var project = await _projectRepository.GetByIdAsync(command.ProjectId, userId, cancellationToken);
+            if (project == null)
+            {
+                return null;
+            }
 
             var task = new DevTask(
                 command.ProjectId,

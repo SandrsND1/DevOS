@@ -13,7 +13,8 @@ namespace DevOS.Infrastructure.Persistence
         public DbSet<Project> Projects { get; set; }
         public DbSet<DevTask> DevTasks { get; set; }
         public DbSet<TimeEntry> TimeEntries { get; set; }
-
+        public DbSet<User> Users { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
